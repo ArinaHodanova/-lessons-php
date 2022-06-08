@@ -1,5 +1,5 @@
 class MyFormulaCalculation {
-     public function fhFn($fn) {
+     public function fnCreate($fn) {
            if(empty($fn)) {
                 return bool;
            } else {
