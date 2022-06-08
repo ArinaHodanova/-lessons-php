@@ -29,3 +29,20 @@
                     } 
                 }
             }
+
+            /*В общем я от тебя хотел получить объявление публичной фукнции, которая принимает строку с описанием формулы и возвращает bool 
+            - удалось или нет инициализировать объект*/
+            class MyFormulaCalculation {
+                private $string;
+                public function fhFn($fn) {
+                   if(empty($fn)) {
+                        return bool;
+                   } else {
+                        return false;
+                   }
+                }
+            }
+            $my_formula_calculation = new MyFormulaCalculation();
+            $my_formula_calculation->fhFn(false);
+   
+            
