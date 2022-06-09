@@ -40,7 +40,7 @@ function fnGetLeftAction(string $variable_or_function_data) {
 
 /*Объявление публичной фукнкции, которая принимает строку с описаниеформулы и возвращает bool - удалось или нет инициализировать объект*/
 $mfc = new MyFormulaCalculation();
-if($mfc->fnCreate($line_arr[1])); //при условии, что fnCreate вернуло true созданного объекта допишим добавление в массив $arr_obj
+if($mfc->fnCreate($line_arr[1])); //при условии, что fnCreate вернуло true созданного объекта, добавляем элементы в массив $arr_obj
 
 print_r($mfc);
 ?>
