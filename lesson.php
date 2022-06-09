@@ -11,21 +11,27 @@ $arr_fn = [];//переменная содержащая функции
 $arr_variable = [];//переменная содержащая переменные
 $arr_obj = [];//массив с формулами, который поместим в объект 
 
+$mfc = new MyFormulaCalculation();
+$mfc->fnCreate($line_arr[1]); 
+
+//echo gettype($mfc) . '<br>';
+print_r($mfc);
+
 foreach($fh_arr as $line) {
     $line_arr = explode("=", $line); //преобразуем в массив , разделив по знаку = 
     if (2 != count($line_arr)) continue; 
                
     if(fnGetLeftAction($line_arr[1])) {
         $arr_fn[$line_arr[0]] = $line_arr[1];
-        $arr_obj[] = $line_arr[1];
+        if($mfc) {
+            $arr_obj[] = $line_arr[1];
+        } 
     } else {
         $arr_variable[$line_arr[0]] = $line_arr[1];
     }
 }
-
-echo '<pre>';
-print_r($arr_obj);
-echo '</pre>';
+//добавлять не всякую строку, а только ту с которой fnCreate вернула тру
+/*дописать добавление в массив $arr_obj при условии, что fnCreate вернуло true созданного объект*/
 
 //Находим самый левый ключ операции или нуль
 function fnGetLeftAction(string $variable_or_function_data) {
@@ -38,9 +44,4 @@ function fnGetLeftAction(string $variable_or_function_data) {
     }
 }
 
-/*Объявление публичной фукнкции, которая принимает строку с описаниеформулы и возвращает bool - удалось или нет инициализировать объект*/
-$mfc = new MyFormulaCalculation();
-if($mfc->fnCreate($line_arr[1])); //при условии, что fnCreate вернуло true созданного объекта, добавляем элементы в массив $arr_obj
-
-print_r($mfc);
 ?>
