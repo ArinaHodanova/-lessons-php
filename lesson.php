@@ -9,13 +9,6 @@ $arr_value = [];
         
 $arr_fn = [];//переменная содержащая функции
 $arr_variable = [];//переменная содержащая переменные
-$arr_obj = [];//массив с формулами, который поместим в объект 
-
-$mfc = new MyFormulaCalculation();
-$mfc->fnCreate($line_arr[1]); 
-
-//echo gettype($mfc) . '<br>';
-print_r($mfc);
 
 foreach($fh_arr as $line) {
     $line_arr = explode("=", $line); //преобразуем в массив , разделив по знаку = 
@@ -23,13 +16,16 @@ foreach($fh_arr as $line) {
                
     if(fnGetLeftAction($line_arr[1])) {
         $arr_fn[$line_arr[0]] = $line_arr[1];
-        if($mfc) {
-            $arr_obj[] = $line_arr[1];
+        $mfc = new MyFormulaCalculation();
+        if($mfc->fnCreate($line_arr[1])) {
+            $arr_obj[] = new MyFormulaCalculation($line_arr[1]);//массив с формулами, который поместим в объект 
         } 
     } else {
         $arr_variable[$line_arr[0]] = $line_arr[1];
     }
 }
+
+
 //добавлять не всякую строку, а только ту с которой fnCreate вернула тру
 /*дописать добавление в массив $arr_obj при условии, что fnCreate вернуло true созданного объект*/
 
